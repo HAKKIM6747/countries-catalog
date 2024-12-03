@@ -6,7 +6,7 @@
   align-items: center;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: #f9f9f9;
+  background-color: #9c9b9b;
   border-radius: 8px;
 }
 
@@ -42,9 +42,11 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  background-color: #9c9b9b;
 }
 
 table th, table td {
+  color: black;
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -57,8 +59,9 @@ table th {
 }
 
 table td a {
-  color: #007bff;
+  color: #046bda;
   text-decoration: none;
+  cursor: pointer;
 }
 
 table td a:hover {
@@ -72,15 +75,11 @@ table td img {
 
 /* Paginator styling */
 mat-paginator {
+  color: black;
   display: flex;
   justify-content: flex-end;
   padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-}
-
-mat-paginator .mat-paginator-range-actions {
-  margin-left: 16px;
+  background-color: #9c9b9b;
 }
 
 /* Modal styling */

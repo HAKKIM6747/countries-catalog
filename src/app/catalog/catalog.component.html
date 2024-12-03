@@ -1,56 +1,56 @@
 <div>
    <div class="search-sort">
-     <input placeholder="Search by country name" />
-     <button>
-      Sort by Name
+     <input [(ngModel)]="searchTerm" (input)="searchCountries()" placeholder="Search by country name" />
+     <button (click)="toggleSortOrder()">
+      Sort by Name ({{ sortOrder === 'asc' ? 'Ascending' : 'Descending' }})
     </button>
    </div>
 
-  <table mat-table class="mat-elevation-z8">
-
+  <table mat-table [dataSource]="getPaginatedCountries()" class="mat-elevation-z8">
     <ng-container matColumnDef="flags">
       <th mat-header-cell *matHeaderCellDef> Flags </th>
       <td mat-cell *matCellDef="let country">
-        <img alt="flag" width="50">
+        <img [src]="country.flags.png" alt="{{ country.name.official }} flag" width="50">
       </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Country Name </th>
       <td mat-cell *matCellDef="let country">
-        <a>Country name</a>
+        <a>{{ country.name.official }}</a>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="cca2">
       <th mat-header-cell *matHeaderCellDef> 2-Character Code </th>
-      <td mat-cell *matCellDef="let country">2cc</td>
+      <td mat-cell *matCellDef="let country">{{ country.cca2 }}</td>
     </ng-container>
 
     <ng-container matColumnDef="cca3">
       <th mat-header-cell *matHeaderCellDef> 3-Character Code </th>
-      <td mat-cell *matCellDef="let country">3cc</td>
+      <td mat-cell *matCellDef="let country">{{ country.cca3 }}</td>
     </ng-container>
 
     <ng-container matColumnDef="nativeName">
       <th mat-header-cell *matHeaderCellDef> Native Name </th>
-      <td mat-cell *matCellDef="let country">Native name</td>
+      <td mat-cell *matCellDef="let country">{{ country.nativeName }}</td>
     </ng-container>
 
     <ng-container matColumnDef="altSpellings">
       <th mat-header-cell *matHeaderCellDef> Alternative Names </th>
-      <td mat-cell *matCellDef="let country">Alternative name</td>
+      <td mat-cell *matCellDef="let country">{{ country.altSpellings.join(', ') }}</td>
     </ng-container>
 
     <ng-container matColumnDef="idd">
       <th mat-header-cell *matHeaderCellDef> Calling Codes </th>
-      <td mat-cell *matCellDef="let country">Calling code</td>
+      <td mat-cell *matCellDef="let country">{{ country.idd.root }} {{ country.idd.suffixes.join(', ') }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator>
+  <mat-paginator [length]="filteredCountries.length" [pageSize]="itemsPerPage" (page)="paginate($event.pageIndex + 1)">
   </mat-paginator>
 </div>
+

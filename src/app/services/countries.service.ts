@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CountriesService {
-  private apiUrl = 'https://restcountries.com/v3.1/all';  // You can use the endpoint for the specific country or region
+  private apiUrl = 'https://restcountries.com/v3.1/all';
 
   constructor(private http: HttpClient) {}
 
