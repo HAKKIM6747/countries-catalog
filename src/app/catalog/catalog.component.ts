@@ -5,12 +5,14 @@ import { Country } from '../shared/models/country.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
+import { CountryModalComponent } from '../country-modal/country-modal.component';
+
 import * as _ from 'lodash';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatTableModule, MatPaginatorModule],
+  imports: [CommonModule, FormsModule, MatTableModule, MatPaginatorModule, CountryModalComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css'
 })
@@ -42,13 +44,13 @@ export class CatalogComponent implements OnInit {
     return nativeNameKeys.length ? nativeNameObject[nativeNameKeys[0]].official : 'Unknown';
   }
 
-  // openModal(country: Country): void {
-  //   this.selectedCountry = country;
-  // }
+  openModal(country: Country): void {
+    this.selectedCountry = country;
+  }
 
-  // closeModal(): void {
-  //   this.selectedCountry = null;
-  // }
+  closeModal(): void {
+    this.selectedCountry = null;
+  }
 
   searchCountries(): void {
     if (this.searchTerm) {
